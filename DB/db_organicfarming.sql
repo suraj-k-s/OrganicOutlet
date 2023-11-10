@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 12:03 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.5
+-- Generation Time: Nov 10, 2023 at 07:05 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `tbl_admin` (
   `admin_name` varchar(100) NOT NULL,
   `admin_email` varchar(100) NOT NULL,
   `admin_password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_admin`
@@ -55,7 +55,7 @@ CREATE TABLE `tbl_complaint` (
   `complaint_status` int(11) NOT NULL,
   `complaint_reply` varchar(100) NOT NULL,
   `customer_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,7 @@ CREATE TABLE `tbl_customer` (
   `place_id` int(11) NOT NULL,
   `customer_photo` varchar(100) NOT NULL,
   `customer_password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_customer`
@@ -92,7 +92,7 @@ INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, `c
 CREATE TABLE `tbl_district` (
   `district_id` int(11) NOT NULL,
   `district_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_district`
@@ -125,7 +125,7 @@ CREATE TABLE `tbl_feedback` (
   `feedback_content` varchar(100) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `feedback_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -137,7 +137,7 @@ CREATE TABLE `tbl_place` (
   `place_id` int(11) NOT NULL,
   `place_name` varchar(100) NOT NULL,
   `district_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_place`
@@ -166,7 +166,7 @@ INSERT INTO `tbl_place` (`place_id`, `place_name`, `district_id`) VALUES
 CREATE TABLE `tbl_producttype` (
   `producttype_id` int(11) NOT NULL,
   `producttype_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_producttype`
@@ -177,6 +177,28 @@ INSERT INTO `tbl_producttype` (`producttype_id`, `producttype_name`) VALUES
 (2, 'FRUITS'),
 (3, 'SPICES'),
 (4, 'DAIRIES');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_review`
+--
+
+CREATE TABLE `tbl_review` (
+  `review_id` int(11) NOT NULL,
+  `review_datetime` varchar(100) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_review` varchar(100) NOT NULL,
+  `user_rating` varchar(100) NOT NULL,
+  `user_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_review`
+--
+
+INSERT INTO `tbl_review` (`review_id`, `review_datetime`, `product_id`, `user_review`, `user_rating`, `user_name`) VALUES
+(0, '2023-11-10 11:23:58', 30, 'Good Product', '4', 'Suraj');
 
 -- --------------------------------------------------------
 
@@ -195,7 +217,7 @@ CREATE TABLE `tbl_supplier` (
   `supplier_proof` varchar(100) NOT NULL,
   `supplier_password` varchar(100) NOT NULL,
   `supplier_status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_supplier`
@@ -204,7 +226,7 @@ CREATE TABLE `tbl_supplier` (
 INSERT INTO `tbl_supplier` (`supplier_id`, `supplier_name`, `supplier_email`, `supplier_address`, `supplier_contact`, `place_id`, `supplier_photo`, `supplier_proof`, `supplier_password`, `supplier_status`) VALUES
 (1, 'Athul CV', 'athulcv@gamil.com', 'Chathanattu(h) Methala p.o Methala', '9967854123', 4, 'Screenshot (1).png', 'Screenshot (1).png', '654321', 0),
 (2, 'Muhsina Maidheen', 'muhsinah@gmail.com', 'Puthusheriyil(h) Thodupuzha p.o thodupuzha', '8832654174', 5, 'Screenshot (1).png', 'Screenshot (1).png', 'muhsi123', 0),
-(3, 'Arun Pradeep', 'arunprade@gmail.com', 'pulikannill(h) sulthanbathery p.o wayanad', '8891457812', 10, 'Screenshot (1).png', 'Screenshot (1).png', 'arun123', 0);
+(3, 'Arun Pradeep', 'arunprade@gmail.com', 'pulikannill(h) sulthanbathery p.o wayanad', '8891457812', 10, 'Screenshot (1).png', 'Screenshot (1).png', 'arun123', 2);
 
 -- --------------------------------------------------------
 
@@ -218,7 +240,7 @@ CREATE TABLE `tbl_suppliercart` (
   `fcart_status` int(11) NOT NULL,
   `fpbooking_id` int(11) NOT NULL,
   `fproduct_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_suppliercart`
@@ -247,7 +269,7 @@ CREATE TABLE `tbl_supplierproduct` (
   `supplier_id` int(11) NOT NULL,
   `producttype_id` int(11) NOT NULL,
   `fproduct_photo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_supplierproduct`
@@ -302,7 +324,7 @@ CREATE TABLE `tbl_supplierproductbooking` (
   `customer_id` int(11) NOT NULL,
   `fpbooking_status` int(11) NOT NULL,
   `payment_status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_supplierproductbooking`
@@ -324,7 +346,7 @@ CREATE TABLE `tbl_supplierstock` (
   `fstock_count` int(11) NOT NULL,
   `fproduct_id` int(11) NOT NULL,
   `fstock_date` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_supplierstock`
