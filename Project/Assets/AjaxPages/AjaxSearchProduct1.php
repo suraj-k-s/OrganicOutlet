@@ -41,6 +41,133 @@ include("../Connection/Connection.php");
                                         <p align="center">
                                             <?php echo $rowS["producttype_name"]; ?><br>
                                         </p>
+                                        <?php
+										
+											
+											$average_rating = 0;
+											$total_review = 0;
+											$five_star_review = 0;
+											$four_star_review = 0;
+											$three_star_review = 0;
+											$two_star_review = 0;
+											$one_star_review = 0;
+											$total_user_rating = 0;
+											$review_content = array();
+										
+											$query = "SELECT * FROM tbl_review where product_id = '".$rowS["fproduct_id"]."' ORDER BY review_id DESC";
+										
+											$result = $Conn->query($query);
+										
+											while($row = $result->fetch_assoc())
+											{
+												
+										
+												if($row["user_rating"] == '5')
+												{
+													$five_star_review++;
+												}
+										
+												if($row["user_rating"] == '4')
+												{
+													$four_star_review++;
+												}
+										
+												if($row["user_rating"] == '3')
+												{
+													$three_star_review++;
+												}
+										
+												if($row["user_rating"] == '2')
+												{
+													$two_star_review++;
+												}
+										
+												if($row["user_rating"] == '1')
+												{
+													$one_star_review++;
+												}
+										
+												$total_review++;
+										
+												$total_user_rating = $total_user_rating + $row["user_rating"];
+										
+											}
+											
+											
+											if($total_review==0 || $total_user_rating==0 )
+											{
+												$average_rating = 0 ; 			
+											}
+											else
+											{
+												$average_rating = $total_user_rating / $total_review;
+											}
+											
+											?>
+                                            <p align="center" style="color:#F96;font-size:20px">
+                                           <?php
+										   if($average_rating==5 || $average_rating==4.5)
+										   {
+											   ?>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                               <?php
+										   }
+										   if($average_rating==4 || $average_rating==3.5)
+										   {
+											   ?>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                               <?php
+										   }
+										   if($average_rating==3 || $average_rating==2.5)
+										   {
+											   ?>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                               <?php
+										   }
+										   if($average_rating==2 || $average_rating==1.5)
+										   {
+											   ?>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                               <?php
+										   }
+										   if($average_rating==1)
+										   {
+											   ?>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#FC3"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                               <?php
+										   }
+										   if($average_rating==0)
+										   {
+											   ?>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                                <i class="fas fa-star star-light mr-1 main_star" style="color:#999"></i>
+                                               <?php
+										   }
+										   ?>
+                                           
                                             <?php
 										
 									
@@ -75,6 +202,8 @@ include("../Connection/Connection.php");
                                         <?php
                                             }
                                         ?>
+                                        <a href="ViewReview.php?pid=<?php echo $rowS["fproduct_id"]; ?>" class="btn btn-warning btn-block">View Reviews</a>
+
                                     </div>
                                 </div>
                             </div>

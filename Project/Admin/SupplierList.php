@@ -64,7 +64,7 @@ include('Head.php');
                                                 <td align="center"><?php echo $data["supplier_name"] ?></td>
                                                 <td align="center"><?php echo $data["supplier_contact"] ?></td>
                                                 <td align="center"><?php echo $data["supplier_email"] ?></td>
-                                                <td align="center"><a href="SupplierList.php?aid=<?php echo $data["supplier_id"] ?>" class="status_btn">Accept</a> | <a href="Seller.php?rid=<?php echo $data["supplier_id"] ?>" class="status_btn">Reject</a> </td>
+                                                <td align="center"><a href="SupplierList.php?aid=<?php echo $data["supplier_id"] ?>" class="status_btn">Accept</a> | <a href="SupplierList.php?rid=<?php echo $data["supplier_id"] ?>" class="status_btn">Reject</a> </td>
                                             </tr>
                                             <?php                     }
 

@@ -4,13 +4,13 @@ include('../Assets/Connection/Connection.php');
 session_start();
 
 
-$sel="select * from tbl_user where user_id=".$_SESSION["uid"];
+$sel="select * from tbl_customer where customer_id=".$_SESSION["uid"];
 	$res=$Conn->query($sel);
 $row=$res->fetch_assoc();
-$name=$row["user_name"];
-$contact=$row["user_contact"];
-$email=$row["user_email"];
-$address=$row["user_address"];
+$name=$row["customer_name"];
+$contact=$row["customer_contact"];
+$email=$row["customer_email"];
+$address=$row["customer_address"];
 
 if(isset($_POST["btn_update"]))
 {
@@ -19,7 +19,7 @@ if(isset($_POST["btn_update"]))
 	$em=$_POST["txt_email"];
 	$add=$_POST["txt_address"];
 	
-	$up="update tbl_user set user_name='".$na."',user_contact='".$co."' , user_email='".$em."' , user_address='".$add."' where user_id=".$_SESSION["uid"];
+	$up="update tbl_customer set customer_name='".$na."',customer_contact='".$co."' , customer_email='".$em."' , customer_address='".$add."' where customer_id=".$_SESSION["uid"];
 	if($Conn->query($up))
 	{
 		?>

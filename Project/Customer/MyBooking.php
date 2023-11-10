@@ -77,8 +77,8 @@ include("../Assets/Connection/Connection.php");
 					{
 						?>
                            Order Completed /
-                           
-                           <a href="bill.php?id=<?php echo $row["fcart_id"]; ?>">Bill</a>
+                           <a href="bill.php?id=<?php echo $row["fcart_id"]; ?>">Bill</a>/
+                           <a href="ProductRating.php?pid=<?php echo $row["fproduct_id"]; ?>">Review</a>
                         <?php 
 					}
 					?>
